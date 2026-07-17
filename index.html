@@ -7,137 +7,166 @@
 <meta name="description" content="Support and help for Notch Pomodoro, a fully offline menu-bar Pomodoro timer for macOS.">
 <style>
   :root {
-    --bg: #0e0e11;
-    --surface: #17181b;
-    --surface-2: #202126;
-    --line: rgba(255,255,255,0.09);
-    --ink: #f3f3f5;
-    --ink-soft: #9a9aa4;
-    --radius: 16px;
-    --font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+    --font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", system-ui, sans-serif;
+    /* light (macOS) */
+    --desk-1: #d7dbe6;
+    --desk-2: #b9c0d4;
+    --win: rgba(246,246,248,0.78);
+    --win-border: rgba(0,0,0,0.10);
+    --titlebar: rgba(255,255,255,0.55);
+    --hairline: rgba(0,0,0,0.10);
+    --card: #ffffff;
+    --card-border: rgba(0,0,0,0.06);
+    --row-line: rgba(0,0,0,0.08);
+    --ink: #1d1d1f;
+    --ink-2: #6e6e73;
+    --accent: #007aff;
+    --accent-ink: #ffffff;
+    --shadow: 0 30px 80px rgba(0,0,0,0.30), 0 6px 20px rgba(0,0,0,0.18);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --desk-1: #2a2c34;
+      --desk-2: #16171c;
+      --win: rgba(30,30,33,0.72);
+      --win-border: rgba(255,255,255,0.10);
+      --titlebar: rgba(255,255,255,0.05);
+      --hairline: rgba(255,255,255,0.10);
+      --card: #1e1e21;
+      --card-border: rgba(255,255,255,0.07);
+      --row-line: rgba(255,255,255,0.09);
+      --ink: #f5f5f7;
+      --ink-2: #9a9aa1;
+      --accent: #0a84ff;
+      --accent-ink: #ffffff;
+      --shadow: 0 30px 80px rgba(0,0,0,0.55), 0 6px 20px rgba(0,0,0,0.4);
+    }
   }
   * { box-sizing: border-box; }
   html { -webkit-text-size-adjust: 100%; }
   body {
-    margin: 0;
-    background:
-      radial-gradient(1200px 500px at 50% -120px, #1a1b1f 0%, var(--bg) 62%);
-    color: var(--ink);
-    font-family: var(--font);
-    line-height: 1.6;
+    margin: 0; min-height: 100vh;
+    display: flex; align-items: flex-start; justify-content: center;
+    padding: 48px 20px;
+    background: radial-gradient(1100px 700px at 50% -8%, var(--desk-1), var(--desk-2));
+    background-attachment: fixed;
+    color: var(--ink); font-family: var(--font); line-height: 1.55;
     -webkit-font-smoothing: antialiased;
   }
-  .wrap { max-width: 720px; margin: 0 auto; padding: 0 24px; }
 
-  /* Notch motif */
-  .notchbar { position: relative; height: 40px; }
-  .notch {
-    position: absolute; top: 0; left: 50%; transform: translateX(-50%);
-    width: 190px; height: 26px; background: #000;
-    border-bottom-left-radius: 14px; border-bottom-right-radius: 14px;
+  /* macOS window */
+  .window {
+    width: 100%; max-width: 640px;
+    background: var(--win);
+    -webkit-backdrop-filter: blur(30px) saturate(180%);
+    backdrop-filter: blur(30px) saturate(180%);
+    border: 1px solid var(--win-border);
+    border-radius: 13px; overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+  .titlebar {
+    position: relative; height: 46px;
+    display: flex; align-items: center; padding: 0 16px;
+    background: var(--titlebar);
+    border-bottom: 1px solid var(--hairline);
+  }
+  .lights { display: flex; gap: 8px; }
+  .lights span { width: 12px; height: 12px; border-radius: 50%; box-shadow: inset 0 0 0 0.5px rgba(0,0,0,0.18); }
+  .r { background: #ff5f57; } .y { background: #febc2e; } .g { background: #28c840; }
+  .titlebar .title {
+    position: absolute; left: 0; right: 0; text-align: center;
+    font-size: 13px; font-weight: 600; color: var(--ink-2); pointer-events: none;
   }
 
-  header { text-align: center; padding: 52px 0 38px; }
-  .icon {
-    width: 88px; height: 88px; margin: 0 auto 20px; display: block;
-    border-radius: 20px;
-    box-shadow: 0 12px 34px rgba(0,0,0,0.5);
-  }
-  h1 { font-size: 30px; margin: 0 0 8px; letter-spacing: -0.02em; }
-  .tagline { color: var(--ink-soft); font-size: 17px; margin: 0; }
+  .content { padding: 30px 26px 26px; }
 
-  section { margin: 0 0 40px; }
-  h2 { font-size: 15px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-soft); margin: 0 0 14px; }
-
-  .card {
-    background: var(--surface); border: 1px solid var(--line);
-    border-radius: var(--radius); padding: 4px 22px;
-  }
-  .faq { border-bottom: 1px solid var(--line); padding: 18px 0; }
-  .faq:last-child { border-bottom: 0; }
-  .faq h3 { margin: 0 0 4px; font-size: 16px; }
-  .faq p { margin: 0; color: var(--ink-soft); font-size: 15px; }
-
-  .contact {
-    background: var(--surface); border: 1px solid var(--line);
-    border-radius: var(--radius); padding: 26px; text-align: center;
-  }
-  .contact p { margin: 0 0 16px; color: var(--ink-soft); }
-  .btn {
-    display: inline-block; background: var(--ink); color: #131316;
-    text-decoration: none; font-weight: 600; font-size: 16px;
-    padding: 12px 26px; border-radius: 12px;
-    transition: transform .12s ease, opacity .12s ease;
-  }
-  .btn:hover { opacity: 0.9; transform: translateY(-1px); }
-  .reply { margin-top: 14px; font-size: 13px; color: var(--ink-soft); }
-
+  header { text-align: center; padding-bottom: 26px; }
+  .appicon { width: 84px; height: 84px; border-radius: 19px; display: block; margin: 0 auto 16px;
+             box-shadow: 0 10px 26px rgba(0,0,0,0.28); }
+  h1 { font-size: 26px; margin: 0 0 6px; letter-spacing: -0.02em; }
+  .tagline { color: var(--ink-2); font-size: 16px; margin: 0 0 16px; }
   .pill {
-    display: inline-flex; align-items: center; gap: 8px;
-    background: var(--surface-2); color: var(--ink-soft);
-    border: 1px solid var(--line);
-    border-radius: 999px; padding: 6px 14px; font-size: 13px; font-weight: 600;
+    display: inline-flex; align-items: center; gap: 7px; font-size: 12.5px; font-weight: 600;
+    color: var(--ink-2); background: var(--card); border: 1px solid var(--card-border);
+    border-radius: 999px; padding: 5px 13px;
   }
-  .pill .dot { width: 7px; height: 7px; border-radius: 50%; background: #4ac47a; }
+  .pill .dot { width: 7px; height: 7px; border-radius: 50%; background: #30d158; }
 
-  footer {
-    border-top: 1px solid var(--line); padding: 28px 0 48px;
-    text-align: center; color: var(--ink-soft); font-size: 13px;
+  .group-label { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;
+                 color: var(--ink-2); margin: 22px 6px 8px; }
+  .group { background: var(--card); border: 1px solid var(--card-border); border-radius: 11px; overflow: hidden; }
+  .row { padding: 14px 16px; border-top: 1px solid var(--row-line); }
+  .row:first-child { border-top: 0; }
+  .row h3 { margin: 0 0 3px; font-size: 15.5px; font-weight: 590; }
+  .row p { margin: 0; color: var(--ink-2); font-size: 14.5px; }
+
+  .contact-row { display: flex; align-items: center; gap: 14px; }
+  .contact-row .txt { flex: 1; }
+  .contact-row .txt h3 { margin: 0 0 2px; font-size: 15.5px; font-weight: 590; }
+  .contact-row .txt p { margin: 0; color: var(--ink-2); font-size: 14px; }
+  .btn {
+    flex-shrink: 0; display: inline-block; background: var(--accent); color: var(--accent-ink);
+    text-decoration: none; font-weight: 600; font-size: 14px; padding: 7px 16px; border-radius: 8px;
   }
+  .btn:hover { filter: brightness(1.05); }
+  .footnote { font-size: 12.5px; color: var(--ink-2); margin: 8px 6px 0; }
+
+  footer { text-align: center; color: var(--ink-2); font-size: 12px; margin-top: 26px; }
 </style>
 </head>
 <body>
-  <div class="notchbar"><div class="notch"></div></div>
+  <div class="window">
+    <div class="titlebar">
+      <div class="lights"><span class="r"></span><span class="y"></span><span class="g"></span></div>
+      <div class="title">Notch Pomodoro Support</div>
+    </div>
 
-  <div class="wrap">
-    <header>
-      <img class="icon" src="icon.png" width="88" height="88" alt="Notch Pomodoro app icon">
-      <h1>Notch Pomodoro</h1>
-      <p class="tagline">A quiet focus timer that lives in your MacBook's notch.</p>
-    </header>
+    <div class="content">
+      <header>
+        <img class="appicon" src="icon.png" width="84" height="84" alt="Notch Pomodoro app icon">
+        <h1>Notch Pomodoro</h1>
+        <p class="tagline">A focus timer that lives in your MacBook's notch.</p>
+        <span class="pill"><span class="dot"></span>100% offline · nothing leaves your Mac</span>
+      </header>
 
-    <section style="text-align:center">
-      <span class="pill"><span class="dot"></span>100% offline · nothing leaves your Mac</span>
-    </section>
-
-    <section>
-      <h2>Frequently asked</h2>
-      <div class="card">
-        <div class="faq">
+      <div class="group-label">Frequently Asked</div>
+      <div class="group">
+        <div class="row">
           <h3>How do I start a session?</h3>
-          <p>Click the pill at the top of your screen to expand the panel, pick focus or a break, and press start. The pill counts down and pulses when time is up.</p>
+          <p>Click the pill at the top of your screen to expand the panel, pick focus or a break, and press start. When time is up you get a chime, a notification, and the pill pulses until you act.</p>
         </div>
-        <div class="faq">
-          <h3>Can I change the interval lengths and colors?</h3>
-          <p>Yes. Open Settings from the menu-bar item and adjust the duration and color for focus, short break, and long break. Changes apply to your next session.</p>
+        <div class="row">
+          <h3>Can I change the interval lengths, colors, and sound?</h3>
+          <p>Yes. Open Settings from the menu-bar item to set the duration and color for each interval and choose your completion sound. Changes apply to your next session.</p>
         </div>
-        <div class="faq">
+        <div class="row">
           <h3>Where are my daily summaries saved?</h3>
           <p>Wherever you choose. On first run you pick a folder, and Notch Pomodoro writes a daily Markdown file there. It is perfect for Obsidian or any notes app.</p>
         </div>
-        <div class="faq">
+        <div class="row">
           <h3>Does it work on a Mac without a notch?</h3>
           <p>Yes. On Macs without a notch, and on external displays, it draws a tidy simulated notch so it looks right everywhere and follows your active display.</p>
         </div>
-        <div class="faq">
+        <div class="row">
           <h3>Is my data private?</h3>
           <p>Completely. The app is fully offline with no account and no network. Your sessions stay on your Mac. The only thing that ever leaves is a summary you export yourself.</p>
         </div>
       </div>
-    </section>
 
-    <section>
-      <h2>Need a hand?</h2>
-      <div class="contact">
-        <p>Questions, bug reports, or feature ideas are always welcome.</p>
-        <a class="btn" href="mailto:nkpgardose@gmail.com?subject=Notch%20Pomodoro%20Support">Email support</a>
-        <div class="reply">I usually reply within a couple of days.</div>
+      <div class="group-label">Need a Hand?</div>
+      <div class="group">
+        <div class="row contact-row">
+          <div class="txt">
+            <h3>Contact support</h3>
+            <p>Questions, bug reports, or feature ideas.</p>
+          </div>
+          <a class="btn" href="mailto:nkpgardose@gmail.com?subject=Notch%20Pomodoro%20Support">Email</a>
+        </div>
       </div>
-    </section>
-  </div>
+      <div class="footnote">I usually reply within a couple of days.</div>
 
-  <footer>
-    © 2026 Neil Kim Gardose. All rights reserved.
-  </footer>
+      <footer>© 2026 Neil Kim Gardose. All rights reserved.</footer>
+    </div>
+  </div>
 </body>
 </html>
