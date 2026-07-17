@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Notch Pomodoro — Privacy Policy</title>
+<meta name="description" content="Privacy policy for Notch Pomodoro. The app is fully offline and collects no data.">
+<style>
+  :root {
+    --font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", system-ui, sans-serif;
+    --desk-1: #d7dbe6; --desk-2: #b9c0d4;
+    --win: rgba(246,246,248,0.80); --win-border: rgba(0,0,0,0.10);
+    --titlebar: rgba(255,255,255,0.55); --hairline: rgba(0,0,0,0.10);
+    --card: #ffffff; --card-border: rgba(0,0,0,0.06);
+    --ink: #1d1d1f; --ink-2: #55555c;
+    --shadow: 0 30px 80px rgba(0,0,0,0.30), 0 6px 20px rgba(0,0,0,0.18);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --desk-1: #2a2c34; --desk-2: #16171c;
+      --win: rgba(30,30,33,0.74); --win-border: rgba(255,255,255,0.10);
+      --titlebar: rgba(255,255,255,0.05); --hairline: rgba(255,255,255,0.10);
+      --card: #1e1e21; --card-border: rgba(255,255,255,0.07);
+      --ink: #f5f5f7; --ink-2: #9a9aa1;
+      --shadow: 0 30px 80px rgba(0,0,0,0.55), 0 6px 20px rgba(0,0,0,0.4);
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; min-height: 100vh; display: flex; justify-content: center; align-items: flex-start;
+    padding: 48px 20px;
+    background: radial-gradient(1100px 700px at 50% -8%, var(--desk-1), var(--desk-2));
+    background-attachment: fixed;
+    color: var(--ink); font-family: var(--font); line-height: 1.6; -webkit-font-smoothing: antialiased;
+  }
+  .window {
+    width: 100%; max-width: 720px; background: var(--win);
+    -webkit-backdrop-filter: blur(30px) saturate(180%); backdrop-filter: blur(30px) saturate(180%);
+    border: 1px solid var(--win-border); border-radius: 13px; overflow: hidden; box-shadow: var(--shadow);
+  }
+  .titlebar { position: relative; height: 46px; display: flex; align-items: center; padding: 0 16px;
+              background: var(--titlebar); border-bottom: 1px solid var(--hairline); }
+  .lights { display: flex; gap: 8px; }
+  .lights span { width: 12px; height: 12px; border-radius: 50%; box-shadow: inset 0 0 0 0.5px rgba(0,0,0,0.18); }
+  .r { background: #ff5f57; } .y { background: #febc2e; } .g { background: #28c840; }
+  .titlebar .title { position: absolute; left: 0; right: 0; text-align: center; font-size: 13px; font-weight: 600; color: var(--ink-2); }
+  .content { padding: 34px 30px 30px; }
+  h1 { font-size: 28px; margin: 0 0 4px; letter-spacing: -0.02em; }
+  .updated { color: var(--ink-2); font-size: 14px; margin: 0 0 26px; }
+  .lede {
+    background: var(--card); border: 1px solid var(--card-border); border-radius: 12px;
+    padding: 18px 20px; font-size: 16px; margin: 0 0 26px;
+  }
+  .lede strong { font-weight: 650; }
+  h2 { font-size: 17px; margin: 26px 0 8px; }
+  p { margin: 0 0 12px; color: var(--ink); }
+  p.muted { color: var(--ink-2); }
+  a { color: #0a84ff; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  ul { margin: 0 0 12px; padding-left: 20px; color: var(--ink); }
+  li { margin: 4px 0; }
+  footer { margin-top: 30px; padding-top: 18px; border-top: 1px solid var(--hairline);
+           color: var(--ink-2); font-size: 13px; }
+</style>
+</head>
+<body>
+  <div class="window">
+    <div class="titlebar">
+      <div class="lights"><span class="r"></span><span class="y"></span><span class="g"></span></div>
+      <div class="title">Notch Pomodoro — Privacy Policy</div>
+    </div>
+    <div class="content">
+      <h1>Privacy Policy</h1>
+      <p class="updated">Notch Pomodoro · Last updated 17 July 2026</p>
+
+      <div class="lede">
+        <strong>Notch Pomodoro does not collect, store, or transmit any personal data.</strong>
+        The app is fully offline. It has no account, no sign-in, no network connection, no analytics, and no third-party tracking.
+      </div>
+
+      <h2>What the app stores</h2>
+      <p>Everything the app records stays on your Mac:</p>
+      <ul>
+        <li>Your interval settings (durations, colors, completion sound) and your Pomodoro session history are saved in a local database on your device.</li>
+        <li>Daily Markdown summaries are written only to a folder you explicitly choose, and only when you ask to export them.</li>
+      </ul>
+      <p>None of this information ever leaves your Mac, and it is never sent to us or to anyone else.</p>
+
+      <h2>Data we collect</h2>
+      <p>None. Notch Pomodoro collects no data of any kind. Because there is no network access and no analytics, we have no way to see how you use the app, and we receive nothing from it.</p>
+
+      <h2>Third parties</h2>
+      <p>The app uses no advertising networks, no analytics services, and no third-party tracking SDKs.</p>
+
+      <h2>Children</h2>
+      <p>The app collects no data from anyone, including children.</p>
+
+      <h2>Changes to this policy</h2>
+      <p class="muted">If this policy ever changes, the updated version will be posted on this page with a new date.</p>
+
+      <h2>Contact</h2>
+      <p>Questions about privacy? Email <a href="mailto:nkpgardose@gmail.com?subject=Notch%20Pomodoro%20Privacy">nkpgardose@gmail.com</a>.</p>
+
+      <footer>© 2026 Neil Kim Gardose. All rights reserved.</footer>
+    </div>
+  </div>
+</body>
+</html>
